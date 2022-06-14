@@ -11,8 +11,33 @@ def pick_word():
     my_words.close()
 
     return random.choice(words)[:-1]
+
 pick_word()
-# def playing():
-#     word = pick_word(my_words):
-#     guess_letters =set(word)
-#     used_letters = set()
+
+
+def playing():
+    word = pick_word()
+    word_letters = set(word)
+    alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+    used_letters = set()
+
+    while len(word_letters) > 0:
+
+        print('You have used the letters: ', ' '.join(used_letters))
+
+        current_word = [letter if letter in used_letters else '-' for letter in word]
+        print('Current word: ', ' '.join(current_word))
+        
+        guess_letter = input('Guess a letter: ')
+        if guess_letter in alphabet:
+            used_letters.add(guess_letter)
+            if guess_letter in word_letters:
+                word_letters.remove(guess_letter)
+
+        elif guess_letter in used_letters:
+            print('Character already in use. Please try again!') 
+
+        else:
+            print('Invalid character. Please try again!')           
+
+playing()        
