@@ -20,7 +20,7 @@ def playing():
     word_letters = set(word)
     alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
     used_letters = set()
-    liuves = 10 
+    lives = 10 
 
     while len(word_letters) > 0 and lives > 0:
 
@@ -43,6 +43,12 @@ def playing():
             print('Character already in use. Please try again!') 
 
         else:
-            print('Invalid character. Please try again!')           
+            print('Invalid character. Please try again!')     
+    
+    if lives == 0:
+        print('You died! The correct word was', word, '!')
+    else:
+        print('Correct! Well done, the word was', word, '!')    
+                  
 
 playing()        
