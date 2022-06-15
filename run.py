@@ -19,12 +19,12 @@ def pick_word():
     generates a word from my_words.txt
     """
     try:
-        my_words = open("words.txt", "r")
+        my_words = open("words.txt", "r") #chooses random word from word.txt
         words = my_words.readlines()
         my_words.close()
 
     except:
-        words = BACKUP_WORDS    
+        words = BACKUP_WORDS #incase we cant import words from the file words.txt
 
     return random.choice(words)[:-1]
 
@@ -32,25 +32,29 @@ def pick_word():
 def playing():
     lives = 10
     word = pick_word().lower()
-    word_letters = set(word)
-    used_letters = set()
+    word_letters = set(word) #letters in the word
+    used_letters = set() #letters that user has guessed
     alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
                 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
     while len(word_letters) > 0 and lives > 0:
-
+        
+        # join the numbers you have guessed into a set
         print('You have used the letters: ', ' '.join(used_letters))
         print(f'You have {lives} lives left:')
 
+        #hiding the current word with '-' until guessed correct
         current_word = [
             letter if letter in used_letters else '-' for letter in word]
         print('Word: ', ' '.join(current_word))
-
+        
+        #getting user input
         guess_letter = input('Guess a letter: ').lower().strip()
         if guess_letter in alphabet:
             used_letters.add(guess_letter)
             if guess_letter in word_letters:
                 word_letters.remove(guess_letter)
+            #if guess is wrong you loose a life    
             else:
                 lives = lives - 1
                 print('ooops, try again!')
@@ -69,6 +73,7 @@ def playing():
 
 
 def main():
+    #giving the option to start a new game of to exit
     keep_playing = True
 
     while(keep_playing):
