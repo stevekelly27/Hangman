@@ -17,17 +17,19 @@ def playing():
     word = pick_word()
     word_letters = set(word)
     used_letters = set()
-    alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+    alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
+                'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
     while len(word_letters) > 0 and lives > 0:
 
-        print('You have used the letters: ', ' /n'.join(used_letters))
-        print(f'You have {lives} lives left:/n')
+        print('You have used the letters: ', ' '.join(used_letters))
+        print(f'You have {lives} lives left:')
 
-        current_word = [letter if letter in used_letters else '-' for letter in word]
+        current_word = [
+            letter if letter in used_letters else '-' for letter in word]
         print('Word: ', ' '.join(current_word))
 
-        guess_letter = input('Guess a letter: /n')
+        guess_letter = input('Guess a letter: ').lower().strip()
         if guess_letter in alphabet:
             used_letters.add(guess_letter)
             if guess_letter in word_letters:
@@ -43,9 +45,9 @@ def playing():
             print('Invalid character. Please try again!')
 
     if lives == 0:
-        print(f'You died! The correct word was {word}!/n')
+        print(f'You died! The correct word was {word}!')
     else:
-        print(f'Correct! Well done, the word was {word}!/n')
+        print(f'Correct! Well done, the word was {word}!')
 
 
 playing()
