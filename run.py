@@ -1,20 +1,37 @@
 import random
 
 
+BACKUP_WORDS = [
+    'integer',
+    'boolean',
+    'variable',
+    'class',
+    'automation'
+    'method',
+    'function',
+    'python',
+    'coding',
+    'genius'
+]
+
 def pick_word():
     """
     generates a word from my_words.txt
     """
-    my_words = open("words.txt", "r")
-    words = my_words.readlines()
-    my_words.close()
+    try:
+        my_words = open("words.txt", "r")
+        words = my_words.readlines()
+        my_words.close()
+
+    except:
+        words = BACKUP_WORDS    
 
     return random.choice(words)[:-1]
 
 
 def playing():
     lives = 10
-    word = pick_word()
+    word = pick_word().lower()
     word_letters = set(word)
     used_letters = set()
     alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
@@ -50,7 +67,7 @@ def playing():
         print(f'Correct! Well done, the word was {word}!')
 
 
-playing()
+
 def main():
     keep_playing = True
 
