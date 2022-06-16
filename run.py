@@ -67,7 +67,7 @@ def playing():
             print('Character already in use. Please try again!')
 
         else:
-            print('Invalid character. Please try again!')
+            print('Invalid character. Please try again! /n')
 
     if lives == 0:
         print(f'You died! The correct word was {word}!')
